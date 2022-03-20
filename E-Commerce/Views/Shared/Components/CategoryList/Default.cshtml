@@ -1,0 +1,10 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Category>
+
+<ul class="navbar-nav">
+    @foreach (var item in Model)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="#"><img src="@Url.Content(item.Icon)" style="width:16px ;height:16px" /> @item.Name</a>
+        </li>
+    }
+</ul
