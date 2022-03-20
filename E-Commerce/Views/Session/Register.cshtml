@@ -9,59 +9,58 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="register-form">
-
                     <form asp-action="Register" method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Adınız</label>
-                                <input class="form-control" type="text" name="Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Soyadınız</label>
-                                <input class="form-control" type="text" name="SurName">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Mail Adresiniz</label>
-                                <input class="form-control" name="Mail">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Telefon Numaranız</label>
-                                <input class="form-control" type="tel" name="PhoneNumber" id="tlfn">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Şifreniz</label>
-                                <input class="form-control" id="password" type="password" name="Password">
-
-                            </div>
-                            <div class="col-md-6">
-                                <label>Şifre Tekrar</label>
-                                <input class="form-control" id="confirm_password" type="password" name="ConfirmPassword"><span id='message'></span>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn">Kayıt Ol</button>
-                            </div>
-                            <br />
-                            <br />
-                            <div class="txt1" style="color:red">
-                                @ViewBag.Message
-                            </div>
-                            @if (ViewData.ModelState.Any(model => model.Value.Errors.Any()))
-                            {
-                                <div class="alert alert-danger span8">
-                                    <a href="#" class="close" data-dismiss="alert">×</a>
-                                    <h4>
-                                        <strong>Hoopsss !</strong>
-                                        <br />
-                                        <br />
-                                    </h4>
-                                    @Html.ValidationSummary(false)
-                                </div>
-                                <br />
-                                <br />
-                            }
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Adınız</label>
+                            <input class="form-control" type="text" name="Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Soyadınız</label>
+                            <input class="form-control" type="text" name="SurName">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mail Adresiniz</label>
+                            <input class="form-control" name="Mail">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Telefon Numaranız</label>
+                            <input class="form-control" type="tel" name="PhoneNumber" id="tlfn">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Şifreniz</label>
+                            <input class="form-control" id="password" type="password" name="Password">
 
                         </div>
-                    </form>
+                        <div class="col-md-6">
+                            <label>Şifre Tekrar</label>
+                            <input class="form-control" id="confirm_password" type="password" name="ConfirmPassword"><span id='message'></span>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn">Kayıt Ol</button>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="txt1" style="color:red">
+                            @ViewBag.Message
+                        </div>
+                        @if (ViewData.ModelState.Any(model => model.Value.Errors.Any()))
+                        {
+                            <div class="alert alert-danger span8">
+                                <a href="#" class="close" data-dismiss="alert">×</a>
+                                <h4>
+                                    <strong>Hoopsss !</strong>
+                                    <br />
+                                    <br />
+                                </h4>
+                                @Html.ValidationSummary(false)
+                            </div>
+                            <br />
+                            <br />
+                        }
+
+                    </div>
+                        </form>
                 </div>
             </div>
         </div>
