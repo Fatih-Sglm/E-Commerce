@@ -1,0 +1,62 @@
+﻿@model EntityLayer.Concrete.Product
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+
+
+<form class="forms-sample" asp-action="AddProduct" enctype="multipart/form-data" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label for="exampleInputName1">Product Title</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail3">Select Brand</label>
+        <select asp-for="BrandId" class="form-control">
+            @foreach (var item in ViewBag.Brand)
+            {
+                <option value="@item.Value" class="form-control">@item.Text</option>
+            }
+        </select>
+        <div class="form-group">
+            <label for="exampleInputEmail3">Select Category</label>
+            <select asp-for="CategoryId" class="form-control">
+                @foreach (var item in ViewBag.CategoryId)
+                {
+                    <option value="@item.Value" class="form-control">@item.Text</option>
+                }
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="file" asp-for="Images" multiple />
+            <span asp-validation-for="Images" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label for="exampleTextarea1">Product Description</label>
+            <textarea asp-for="description" class="form-control" id="exampleTextarea1"></textarea>
+            <span asp-validation-for="description" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-gradient-primary mr-2">Save</button>
+        <button class="btn btn-light">Cancel</button>
+</form>
+
+@section Script{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("exampleTextarea1")
+    </script>
+}
+
+
+
+
+
+
+
+
+

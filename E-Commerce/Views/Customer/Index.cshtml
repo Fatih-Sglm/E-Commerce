@@ -1,0 +1,169 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Customer>
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Products</a></li>
+            <li class="breadcrumb-item active">My Account</li>
+        </ul>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- My Account Start -->
+
+<div class="my-account">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                    <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
+                    <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>
+                    <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>address</a>
+                    <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
+                    <a class="nav-link" href="/Login/logout"><i class="fa fa-sign-out-alt"></i>Logout</a>
+                </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <div class="tab-content">
+                    @foreach (var i in Model)
+                    {
+                        <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                            <h4>Dashboard</h4>
+                            <p>
+                                Welcome to our website dear @i.Name @i.SurName
+                            </p>
+                        </div>
+                    }
+                    <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Ürün Resmi</th>
+                                        <th>Ürün ismi</th>
+                                        <th>Satın Alma Tarihi</th>
+                                        <th>Miktarı</th>
+                                        <th>Fiyatı</th>
+                                        <th>Kargo Durumu</th>
+                                    </tr>
+                                </thead>
+                                @*<tbody>
+                        @foreach (var x in Model.Obj3)
+                        {
+                            <tr>
+                                <td><img src="@Url.Content(x.VendorProduct.Product.Image)" style="width:100px; height:100px" /></td>
+                                <td>@x.VendorProduct.Product.Title</td>
+                                <td>@x.OrderDate</td>
+                                <td>@x.Quantity</td>
+                                <td>@x.PriceTotal</td>
+                                @if (x.İsShipping == true)
+                                {
+                                    <th>Kargoya Verildi</th>
+                                }
+                                else
+                                {
+                                    <th>Kargoya Verilmesi Bekleniyor</th>
+                                }
+                            </tr>
+                        }
+                    </tbody>*@
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="payment-tab" role="tabpanel" aria-labelledby="payment-nav">
+                        <h4>Payment Method</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque.
+                        </p>
+                    </div>
+
+                    @await Component.InvokeAsync("AdressList" ,new {id = 1 })
+                    
+                    <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
+                        <h4>Account Details</h4>
+                        @foreach (var y in Model)
+                        {
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label>Adınız</label>
+                                    <input class="form-control" name="Name" type="text" value="@y.Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Soyadınız</label>
+                                    <input class="form-control" type="text" name="SurName" value="@y.SurName">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Telefon NUmaranız</label>
+                                    <input class="form-control" type="tel" name="PhoneNumber" pattern="[0-9]{10}" value="@y.PhoneNumber">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Mail Adresniniz</label>
+                                    <input class="form-control" type="text" name="Mail" value="@y.Mail">
+                                </div>
+                                <div class="col-md-12">
+                                    <a href=""><button class="btn">Update Account</button></a>
+                                    <br><br>
+                                </div>
+
+                            </div>
+                        }
+
+                        <h4>Password change</h4>
+                        @if (ViewBag.Message != null)
+                        {
+                            <div style="color:green">
+                                hello
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input class="form-control" type="password" id="OldPassword" placeholder="Current Password" required>
+                                <div></div>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" type="password" id="NewPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="New Password" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" type="password" id="ConfirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm Password" required>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn" onclick="ChangePassword()">Save Changes</button>
+                            </div>
+
+                            <div id="message">
+                                <h3>Password must contain the following:</h3>
+                                <p id="letter" class="invalid"> A lowercase letter</p>
+                                <p id="capital" class="invalid">A capital (uppercase) letter</p>
+                                <p id="number" class="invalid">A number</p>
+                                <p id="length" class="invalid">Minimum 8 characters</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function ChangePassword() {
+        var OldPassword = $('#OldPassword').val();
+        var NewPassword = $('#NewPassword').val();
+        var ConfirmPassword = $("#ConfirmPassword").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/Customer/PasswordChange",
+            data: { "OldPassword": OldPassword, "NewPassword": NewPassword, "ConfirmPassword": ConfirmPassword, }
+        })
+    }
+</script>
+

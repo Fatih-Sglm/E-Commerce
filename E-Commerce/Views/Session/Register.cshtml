@@ -1,0 +1,88 @@
+﻿@model EntityLayer.ViewModels.RegisterViewmodel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="register-form">
+                    @using (Html.BeginForm("register", "Session", FormMethod.Post))
+                    {
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Adınız</label>
+                            <input class="form-control" type="text" name="Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Soyadınız</label>
+                            <input class="form-control" type="text" name="SurName">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mail Adresiniz</label>
+                            <input class="form-control" name="Mail">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Telefon Numaranız</label>
+                            <input class="form-control" type="tel" name="PhoneNumber" id="tlfn">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Şifreniz</label>
+                            <input class="form-control" id="password" type="password" name="Password">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label>Şifre Tekrar</label>
+                            <input class="form-control" id="confirm_password" type="password" name="ConfirmPassword"><span id='message'></span>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn">Kayıt Ol</button>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="txt1" style="color:red">
+                            @ViewBag.Message
+                        </div>
+                        @if (ViewData.ModelState.Any(model => model.Value.Errors.Any()))
+                        {
+                            <div class="alert alert-danger span8">
+                                <a href="#" class="close" data-dismiss="alert">×</a>
+                                <h4>
+                                    <strong>Hoopsss !</strong>
+                                    <br />
+                                    <br />
+                                </h4>
+                                @Html.ValidationSummary(false)
+                            </div>
+                            <br />
+                            <br />
+                        }
+
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+
+<script>
+
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm_password').val() && $('#password').val() != null) {
+            $('#message').html('Şifreler Eşleşiyor').css('color', 'green');
+        } else
+            $('#message').html('Şifreler Eşleşmiyor').css('color', 'red');
+    });
+
+    $('#tlfn').inputmask("(599) 999-9999");
+</script>
+

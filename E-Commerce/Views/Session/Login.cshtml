@@ -1,0 +1,38 @@
+﻿@addTagHelper * , Microsoft.AspNetCore.Mvc.TagHelpers
+@model EntityLayer.Concrete.Customer
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login-form">
+                    <form asp-action="Login" asp-controller="Session" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>E-mail</label>
+                                <input type="text" asp-for="Mail" value="" class="form-control" />
+                                <span asp-validation-for="Mail" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Şifreniz</label>
+                                <input type="password" asp-for="Password" value="" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="txt1" style="color:red">
+                                @ViewBag.Message
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn">Giriş Yap</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
