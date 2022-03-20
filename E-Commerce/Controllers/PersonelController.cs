@@ -57,7 +57,7 @@ namespace E_Commerce.Controllers
                         item.CopyTo(uploadImage);
                     }
 
-                    p.imageS.Add(new Images { ImageName = item.FileName, status= true  });
+                    p.imageS.Add(new Images { ImageName = item.FileName, Locaiton = "~/img/"+ item.FileName, status= true  });
 
                 }
 

@@ -12,6 +12,6 @@ namespace BussinesLayer.Abstract
     {
         List<VendorProduct> GetProductById(int id);
 
-        List<VendorProduct> GetProductAll(int id);
+        VendorProduct GetProductAll(int id);
     }
 }

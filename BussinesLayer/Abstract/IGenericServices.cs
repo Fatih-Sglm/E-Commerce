@@ -13,6 +13,10 @@ namespace BussinesLayer.Abstract
         void TUpdate(T t);
         void TDelete(T t);
         List<T> TGetAll();
+
+        List<T> TGetAll(int id);
+
+        List<T> TGetAll(Expression<Func<T, bool>> filter);
         T TGetById(int id);
     }
 }

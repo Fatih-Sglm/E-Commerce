@@ -1,0 +1,10 @@
+﻿@model List<EntityLayer.Concrete.Images>
+
+@foreach (var item in Model)
+{
+    <li data-thumb="@item.ImageName">
+        <div class="thumb-image">
+            <img src="~/img/@item.ImageName" data-imagezoom="true" class="img-fluid" alt="">
+        </div>
+    </li>
+}

@@ -70,7 +70,7 @@ namespace E_Commerce.Controllers
             {
                 var isEmailAlreadyExists = c.Customers.Any(x => x.Mail.ToLower() == rv.Mail.ToLower());
 
-                string noResult = "Mail is used.";
+                string noResult = "Bu Mail Daha Önce Kayıt Olunmuş.";
                 if (isEmailAlreadyExists)
                 {
                     ViewBag.Message = noResult;

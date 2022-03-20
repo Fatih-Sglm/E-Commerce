@@ -50,12 +50,22 @@ namespace BussinesLayer.Concrete
             return _vd.GetById(id);
         }
 
-        public List<VendorProduct> GetProductAll(int id)
+        public VendorProduct GetProductAll(int id)
         {
             return _vd.GetProductWithAll(x => x.Id == id);
         }
 
         public List<VendorProduct> GetProductById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<VendorProduct> TGetAll(Expression<Func<VendorProduct, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<VendorProduct> TGetAll(int id)
         {
             throw new NotImplementedException();
         }

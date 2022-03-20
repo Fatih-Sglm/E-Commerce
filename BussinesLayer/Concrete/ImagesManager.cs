@@ -10,51 +10,46 @@ using System.Threading.Tasks;
 
 namespace BussinesLayer.Concrete
 {
-    public class CustomerManager : ICustomerServices
+    public class ImagesManager : IImagesServices
     {
-        ICustomerdal _cd;
+        IImagesDal _img;
 
-        public CustomerManager(ICustomerdal cd)
+        public ImagesManager(IImagesDal img)
         {
-            _cd = cd;
+            _img = img;
         }
 
-        public List<Customer> GetCustomerById(int id)
-        {
-            return _cd.GetById(x => x.Id == id);
-        }
-
-        public void TDelete(Customer t)
+        public void TDelete(Images t)
         {
             throw new NotImplementedException();
         }
 
-        public List<Customer> TGetAll()
+        public List<Images> TGetAll(int id)
+        {
+            return _img.GetAll(x => x.ProductId == id);
+        }
+
+        public List<Images> TGetAll(Expression<Func<Images, bool>> filter)
+        {
+            return _img.GetAll(filter);
+        }
+
+        public List<Images> TGetAll()
         {
             throw new NotImplementedException();
         }
 
-        public List<Customer> TGetAll(Expression<Func<Customer, bool>> filter)
+        public Images TGetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Customer> TGetAll(int id)
+        public void TInsert(Images t)
         {
             throw new NotImplementedException();
         }
 
-        public Customer TGetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TInsert(Customer t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TUpdate(Customer t)
+        public void TUpdate(Images t)
         {
             throw new NotImplementedException();
         }

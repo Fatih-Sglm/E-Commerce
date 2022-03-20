@@ -39,6 +39,11 @@ namespace BussinesLayer.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Adress> TGetAll(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Adress TGetById(int id)
         {
             throw new NotImplementedException();

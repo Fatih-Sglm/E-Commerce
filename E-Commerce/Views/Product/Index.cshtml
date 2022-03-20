@@ -84,7 +84,8 @@
                                 </div>
                                 <div class="product-image">
                                     <a href="/Product/ProductDetail/@x.Id">
-                                        @*<img src="@Url.Content(x.Product.Image)" style="width:200px; height:200px" alt="Product Image">*@
+                                        
+                                       <img src="@Url.Content(Model.First().Product.imageS.First().Locaiton)" style="width:200px; height:200px" alt="Product Image">
                                     </a>
                                     <div class="product-action">
                                         <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -100,8 +101,6 @@
                         </div>
                     }
                 </div>
-
-                <!-- Pagination Start -->
                 <div class="col-md-12">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
@@ -117,7 +116,6 @@
                         </ul>
                     </nav>
                 </div>
-                <!-- Pagination Start -->
             </div>
 
             <!-- Side Bar Start -->

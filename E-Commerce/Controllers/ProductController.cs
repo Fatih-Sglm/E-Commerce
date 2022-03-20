@@ -15,6 +15,7 @@ namespace E_Commerce.Controllers
         VendorProductManager vm = new VendorProductManager (new EfVendorProductRepository());
         public IActionResult Index()
         {
+            // reismler null geliyo okey :) 
             var value = vm.TGetAll();
             return View(value);
         }

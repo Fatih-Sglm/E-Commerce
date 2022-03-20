@@ -47,5 +47,10 @@ namespace BussinesLayer.Concrete
         {
             return _ct.GetById(id);
         }
+
+        public List<Product> TGetAll(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

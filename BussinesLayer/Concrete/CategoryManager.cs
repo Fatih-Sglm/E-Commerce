@@ -47,5 +47,10 @@ public CategoryManager(ICategorydal cd)
         {
             return _cd.GetById(id);
         }
+
+        public List<Category> TGetAll(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
