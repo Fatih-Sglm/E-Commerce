@@ -57,7 +57,7 @@ namespace E_Commerce.Controllers
 
         public IActionResult ListProduct(VendorProduct vp)
         {
-            return View();
+            return View(vm.TGetAll());
         }
     }
 }
