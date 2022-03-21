@@ -1,7 +1,9 @@
 ﻿using BussinesLayer.Concrete;
+using BussinesLayer.ValidationRules;
 using DataAccesLayer.Concrete;
 using DataAccesLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -34,7 +36,23 @@ namespace E_Commerce.Controllers
         [HttpPost]
         public IActionResult SellProduct(VendorProduct vp)
         {
+            VendorProductValidator vpp = new VendorProductValidator();
+            ValidationResult rst = vpp.Validate(vp);
+
+            if (rst.IsValid)
+            {
+                vm.TInsert(vp);
+            }
+            else
+            {
+                ViewBag.ProductID = new SelectList(db.Products, "Id", "Title");
+                foreach (var item in rst.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
+
         }
 
         public IActionResult ListProduct(VendorProduct vp)

@@ -3,9 +3,6 @@
     ViewData["Title"] = "AddProduct";
     Layout = "~/Views/Shared/_PersonelLayout.cshtml";
 }
-
-
-
 <form class="forms-sample" asp-action="AddProduct" enctype="multipart/form-data" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
@@ -14,16 +11,17 @@
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail3">Select Brand</label>
+        <label for="exampleInputEmail3">Ürün Markasını Seçin</label>
         <select asp-for="BrandId" class="form-control">
-            @foreach (var item in ViewBag.Brand)
+            @foreach (var item in ViewBag.BrandId)
             {
                 <option value="@item.Value" class="form-control">@item.Text</option>
             }
         </select>
-        </div>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
         <div class="form-group">
-            <label for="exampleInputEmail3">Select Category</label>
+            <label for="exampleInputEmail3">Ürün Kategorini Seçin</label>
             <select asp-for="CategoryId" class="form-control">
                 @foreach (var item in ViewBag.CategoryId)
                 {

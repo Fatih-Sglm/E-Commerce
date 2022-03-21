@@ -10,7 +10,7 @@
             <h4 class="card-title">Yeni Ürün Ekleme Bölümü</h4>
             <p class="card-description"></p>
 
-            <form class="forms-sample" asp-action="SellProduct">
+            <form class="forms-sample" asp-action="SellProduct" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Select Category</label>
@@ -30,7 +30,6 @@
                         </div>
                         <input type="text" asp-for="Price" />
                         <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
                         </div>
                     </div>
                 </div>
@@ -42,7 +41,6 @@
                         </div>
                         <input type="text" asp-for="Shipping" />
                         <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
                         </div>
                     </div>
                 </div>

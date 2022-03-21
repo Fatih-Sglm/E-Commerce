@@ -1,8 +1,10 @@
 ﻿using BussinesLayer.Concrete;
+using BussinesLayer.ValidationRules;
 using DataAccesLayer.Concrete;
 using DataAccesLayer.EntityFramework;
 using E_Commerce.Models;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,10 +37,10 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-         [HttpGet]
+        [HttpGet]
         public IActionResult AddProduct()
         {
-            ViewBag.Brand = new SelectList(db.Brands, "Id", "Name");
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
@@ -46,7 +48,9 @@ namespace E_Commerce.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product p)
         {
-            if (p.Images != null)
+            AddProductValidator adv = new AddProductValidator();
+            ValidationResult result = adv.Validate(p);
+            if (result.IsValid)
             {
                 var filepath = Path.Combine(env.WebRootPath, "img");
                 foreach (var item in p.Images)
@@ -57,19 +61,26 @@ namespace E_Commerce.Controllers
                         item.CopyTo(uploadImage);
                     }
 
-                    p.imageS.Add(new Images { ImageName = item.FileName, Locaiton = "~/img/"+ item.FileName, status= true  });
+                    p.imageS.Add(new Images { ImageName = item.FileName, Locaiton = "~/img/" + item.FileName, status = true });
 
                 }
 
                 p.CreateDate = DateTime.Today;
                 pm.TInsert(p);
+                return RedirectToAction("Index", "Personel", new { id = 1 });
             }
             else
             {
-                return RedirectToAction("Index","Home");
+                ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
+                ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
-            
-            return RedirectToAction("Index", "Personel", new { id = 1 });
+            return View(p);
+
         }
     }
 }
