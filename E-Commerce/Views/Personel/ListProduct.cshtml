@@ -1,0 +1,64 @@
+﻿@model List<EntityLayer.Concrete.Product>
+@{
+    ViewData["Title"] = "ListProduct";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<<<<<<< HEAD
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Bordered table</h4>
+        <table id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th> Ürün Adı </th>
+                    <th> Ürün Markası </th>
+                    <th> Ürün Kategorisi </th>
+                    <th> Ürün Durumu </th>
+                    <th> İşlemler </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                    <tr>
+                        <td>@x.Title </td>
+                        <td>@x.Brands.Name </td>
+                        <td>@x.Category.Name</td>
+                        <td>@x.Status</td>
+                        <td>
+                            <span><a class="btn btn-gradient-info btn-rounded btn-fw" href="/Blog/Blogdetail/@x.Id" title="Detayı Gör"><i class="mdi mdi-details" style="width:40px"></i></a> </span>
+                            <a class="btn btn-gradient-success btn-rounded btn-fw " href="/Admin/GetBlog/@x.Id" title="Güncelle"><i class="mdi mdi-window-restore"></i></a>
+                            <a class="btn btn-gradient-danger btn-rounded btn-fw" data-target="#deleteBlog" title="Sil" onclick="JavaSend(@x.Id)"><i class="mdi mdi-delete"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="deleteBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="top: 50px;">
+            <div class="modal-header modal-header-success" style="background-color: #d9534f;color: white !important;text-align: center;
+        font-size: 30px;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3><i class="glyphicon glyphicon-alert"></i> Kayıt Silme Onayı</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Kayıt silinicektir, Kaydı silmek istediğinize emin misiniz?</h4>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger pull-right" id="modalLink"><i class="material-icons">delete</i> Sil</a>
+                <button type="button" style="margin-right:10px;" class="btn btn-primary pull-right" data-dismiss="modal"><i class="material-icons"> power_settings_new</i>Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<<<<<<< HEAD
+<script>
+    function JavaSend(id) {
+        var link = "/Admin/deleteBlog/" + id;
+        $("#modalLink").attr("href", link);
+        $("#deleteBlog").modal();
+    }
+</script>

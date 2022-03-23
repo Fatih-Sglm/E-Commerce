@@ -21,7 +21,7 @@ namespace BussinesLayer.Concrete
 
         public void TDelete(Images t)
         {
-            throw new NotImplementedException();
+            _img.Delete(t);
         }
 
         public List<Images> TGetAll(int id)
@@ -41,7 +41,7 @@ namespace BussinesLayer.Concrete
 
         public Images TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _img.GetById(id);
         }
 
         public void TInsert(Images t)

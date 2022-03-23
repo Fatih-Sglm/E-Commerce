@@ -31,10 +31,16 @@ namespace E_Commerce.Controllers
         }
 
         ProductManager pm = new ProductManager(new EfProductRepository());
+        ImagesManager im = new ImagesManager(new EfImagesRepository());
         private Context db = new Context();
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult ListProduct()
+        {
+            var values = pm.GetAllIncludeAll();
+            return View(values);
         }
 
         [HttpGet]
@@ -48,9 +54,7 @@ namespace E_Commerce.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product p)
         {
-            AddProductValidator adv = new AddProductValidator();
-            ValidationResult result = adv.Validate(p);
-            if (result.IsValid)
+            if (ModelState.IsValid)
             {
                 var filepath = Path.Combine(env.WebRootPath, "img");
                 foreach (var item in p.Images)
@@ -58,6 +62,7 @@ namespace E_Commerce.Controllers
                     var allName = Path.Combine(filepath, item.FileName);
                     using (var uploadImage = new FileStream(allName, FileMode.Create))
                     {
+
                         item.CopyTo(uploadImage);
                     }
 
@@ -73,14 +78,26 @@ namespace E_Commerce.Controllers
             {
                 ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
                 ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+                var message = ModelState.ToList();
+                return View(p);
             }
-            return View(p);
 
+        }
+
+        public IActionResult DetailProduct(int id)
+        {
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            var vl =  pm.TGetById(id);
+            return View(vl);
+        }
+
+        
+        public IActionResult DeleteImage(int id)
+        {
+            var img = im.TGetById(id);
+            im.TDelete(img);
+            return RedirectToAction("DetailProduct", "Personel", new { id = img.ProductId });
         }
     }
 }

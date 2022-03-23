@@ -12,8 +12,8 @@ namespace BussinesLayer.ValidationRules
     {
         public LoginValidator()
         {
-            RuleFor(x => x.Mail).NotEmpty().WithMessage("BU kısım Boş bırakılamaz");
-            RuleFor(x => x.Mail).EmailAddress().WithMessage("Lütfen Geçerli bir email giriniz");
+            RuleFor(x => x.Mail).NotEmpty().WithMessage("Mail kısım Boş bırakılamaz");
+            RuleFor(x => x.Mail).EmailAddress().WithMessage("Lütfen Geçerli bir E-mail giriniz");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Şifre boş geçilemez");
         }
     }

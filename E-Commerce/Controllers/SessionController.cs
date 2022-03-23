@@ -1,8 +1,10 @@
 ﻿using BussinesLayer.Concrete;
+using BussinesLayer.ValidationRules;
 using DataAccesLayer.Concrete;
 using DataAccesLayer.EntityFramework;
 using EntityLayer.Concrete;
 using EntityLayer.ViewModels;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,27 +29,31 @@ namespace E_Commerce.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> Login(Customer c)
+        public async Task<IActionResult> Login(Customer c)
         {
             Context cd = new Context();
-            var dv = cd.Customers.FirstOrDefault(x => x.Mail == c.Mail && x.Password == c.Password);
-            if(dv!= null)
+            if (ModelState.IsValid)
             {
-                var claims =new  List<Claim>
+                var dv = cd.Customers.FirstOrDefault(x => x.Mail == c.Mail && x.Password == c.Password);
+                if (dv != null)
+                {
+                    var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, c.Mail)
                 };
 
-                var useridentity = new ClaimsIdentity(claims, "user");
-                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
-                await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index" , "Customer" , new { id = dv.Id });
-               
+                    var useridentity = new ClaimsIdentity(claims, "user");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+                    await HttpContext.SignInAsync(principal);
+                    return RedirectToAction("Index", "Customer", new { id = dv.Id });
+
+                }
             }
             else
             {
-                return View();
+                var message = ModelState.ToList();
             }
+            return View(c);
         }
 
         [HttpGet]
@@ -66,35 +72,35 @@ namespace E_Commerce.Controllers
             }
             else
             {
-            if (rv.Password == rv.ConfirmPassword)
-            {
-                var isEmailAlreadyExists = c.Customers.Any(x => x.Mail.ToLower() == rv.Mail.ToLower());
-
-                string noResult = "Bu Mail Daha Önce Kayıt Olunmuş.";
-                if (isEmailAlreadyExists)
+                if (rv.Password == rv.ConfirmPassword)
                 {
-                    ViewBag.Message = noResult;
-                    return View("Register", rv);
-                }
+                    var isEmailAlreadyExists = c.Customers.Any(x => x.Mail.ToLower() == rv.Mail.ToLower());
 
-                
+                    string noResult = "Bu Mail Daha Önce Kayıt Olunmuş.";
+                    if (isEmailAlreadyExists)
+                    {
+                        ViewBag.Message = noResult;
+                        return View("Register", rv);
+                    }
+
+
+                    else
+                    {
+                        cs.Name = rv.Name;
+                        cs.SurName = rv.SurName;
+                        cs.Mail = rv.Mail;
+                        cs.PhoneNumber = rv.PhoneNumber;
+                        cs.Password = rv.Password;
+                        c.Customers.Add(cs);
+                    }
+                    c.SaveChanges();
+
+                    return RedirectToAction("Login", "Session");
+                }
                 else
                 {
-                    cs.Name = rv.Name;
-                    cs.SurName = rv.SurName;
-                    cs.Mail = rv.Mail;
-                    cs.PhoneNumber = rv.PhoneNumber;
-                    cs.Password = rv.Password;
-                    c.Customers.Add(cs);
+                    return View("Register", rv);
                 }
-                c.SaveChanges();
-
-                return RedirectToAction("Login", "Session");
-            }
-            else
-            {
-                return View("Register", rv);
-            }
 
             }
         }

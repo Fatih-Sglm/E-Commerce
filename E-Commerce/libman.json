@@ -16,6 +16,10 @@
         "dataTables.bootstrap4.min.js",
         "dataTables.bootstrap4.min.css"
       ]
+    },
+    {
+      "library": "jquery@3.5.1",
+      "destination": "wwwroot/jquery/"
     }
   ]
 }

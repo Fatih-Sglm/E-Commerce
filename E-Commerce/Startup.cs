@@ -1,3 +1,5 @@
+using BussinesLayer.ValidationRules;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -26,8 +28,10 @@ namespace E_Commerce
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
+
         {
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<VendorProductValidator>());
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
