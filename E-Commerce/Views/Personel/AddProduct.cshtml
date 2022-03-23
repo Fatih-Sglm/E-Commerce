@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
         <label for="exampleInputEmail3">Ürün Markasını Seçin</label>
-        <select asp-for="BrandId" class="form-control">
+        <select asp-for="BrandId" class="form-control" title="Choose one of the following...">
             @foreach (var item in ViewBag.BrandId)
             {
                 <option value="@item.Value" class="form-control">@item.Text</option>
@@ -20,28 +20,42 @@
         </select>
         <span asp-validation-for="BrandId" class="text-danger"></span>
     </div>
-        <div class="form-group">
-            <label for="exampleInputEmail3">Ürün Kategorini Seçin</label>
-            <select asp-for="CategoryId" class="form-control">
-                @foreach (var item in ViewBag.CategoryId)
-                {
-                    <option value="@item.Value" class="form-control">@item.Text</option>
-                }
-            </select>
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
+    <div class="form-group">
+        <label for="exampleInputEmail3">Ürün Kategorini Seçin</label>
+        <select asp-for="CategoryId" class="form-control" title="Choose one of the following...">
+            @foreach (var item in ViewBag.CategoryId)
+            {
+                <option value="@item.Value" class="form-control">@item.Text</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    @*<div class="form-group">
+        <div class="custom-file">
+            <input type="file" asp-for="Images" multiple class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Resim Ekle</label>
         </div>
-        <div class="form-group">
-            <input type="file" asp-for="Images" multiple />
-            <span asp-validation-for="Images" class="text-danger"></span>
+        <span asp-validation-for="Images" class="text-danger"></span>
 
-        </div>
-        <div class="form-group">
-            <label for="exampleTextarea1">Product Description</label>
-            <textarea asp-for="description" class="form-control" id="exampleTextarea1"></textarea>
-            <span asp-validation-for="description" class="text-danger"></span>
-        </div>
-        <button type="submit" class="btn btn-gradient-primary mr-2">Save</button>
-        <button class="btn btn-light">Cancel</button>
+    </div>*@
+<div class="form-group">
+    <label>File upload</label>
+    <input type="file" asp-for="Images" multiple class="file-upload-default">
+    <div class="input-group col-xs-12">
+        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+        <span class="input-group-append">
+            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+        </span>
+    </div>
+    <span asp-validation-for="Images" class="text-danger"></span>
+</div>
+    <div class="form-group">
+        <label for="exampleTextarea1">Product Description</label>
+        <textarea asp-for="description" class="form-control" id="exampleTextarea1"></textarea>
+        <span asp-validation-for="description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-gradient-primary mr-2">Save</button>
+    <button class="btn btn-light">Cancel</button>
 </form>
 
 @section Script{

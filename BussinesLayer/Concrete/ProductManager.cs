@@ -52,5 +52,10 @@ namespace BussinesLayer.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public List<Product> GetAllIncludeAll()
+        {
+            return _ct.GetAllIncludeAll();
+        }
     }
 }

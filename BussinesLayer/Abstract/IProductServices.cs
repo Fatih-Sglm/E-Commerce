@@ -9,5 +9,6 @@ namespace BussinesLayer.Abstract
 {
     public interface IProductServices : IGenericServices<Product>
     {
+        List<Product> GetAllIncludeAll();
     }
 }

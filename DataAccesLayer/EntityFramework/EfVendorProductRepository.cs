@@ -26,7 +26,6 @@ namespace DataAccesLayer.EntityFramework
         {
             using(var c = new Context())
             {
-                // orada componentle çekiyon ama ilk resmi çizdirmek istiyon niye 2 tane resim var :D
                 return c.VendorProducts.Include(x => x.Product).Include(x=> x.Product.imageS).ToList();
             }
         }

@@ -36,6 +36,11 @@ namespace E_Commerce.Controllers
         {
             return View();
         }
+        public IActionResult ListProduct()
+        {
+            var values = pm.GetAllIncludeAll();
+            return View(values);
+        }
 
         [HttpGet]
         public IActionResult AddProduct()
@@ -58,6 +63,7 @@ namespace E_Commerce.Controllers
                     var allName = Path.Combine(filepath, item.FileName);
                     using (var uploadImage = new FileStream(allName, FileMode.Create))
                     {
+
                         item.CopyTo(uploadImage);
                     }
 
