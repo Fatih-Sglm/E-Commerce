@@ -20,22 +20,27 @@
             <tbody>
                 @foreach (var x in Model)
                 {
-                    <tr>
-                        <td>@x.Title </td>
-                        <td>@x.Brands.Name </td>
-                        <td>@x.Category.Name</td>
-                        <td>@x.Status</td>
-                        <td>
-                            <span><a class="btn btn-gradient-info btn-rounded btn-fw" href="/Blog/Blogdetail/@x.Id" title="Detayı Gör"><i class="mdi mdi-details" style="width:40px"></i></a> </span>
-                            <a class="btn btn-gradient-success btn-rounded btn-fw " href="/Admin/GetBlog/@x.Id" title="Güncelle"><i class="mdi mdi-window-restore"></i></a>
-                            <a class="btn btn-gradient-danger btn-rounded btn-fw" data-target="#deleteBlog" title="Sil" onclick="JavaSend(@x.Id)"><i class="mdi mdi-delete"></i></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@x.Title </td>
+                    <td>@x.Brands.Name </td>
+                    <td>@x.Category.Name</td>
+                    <td>@x.Status</td>
+                    <th>
+                        <span class="btn bg-cyan waves-effect"><a href="/Blog/Blogdetail/@x.Id" title="Detayı Gör"> <i class="material-icons"> folder</i></a> </span>
+                        <a class="btn bg-purple waves-effect" href="/Admin/GetBlog/@x.Id" title="Güncelle">  <i class="material-icons">update</i></a>
+                        <a class="btn bg-red waves-effect" data-target="#deleteBlog" title="Sil" onclick="JavaSend(@x.Id)"> <i class="material-icons">delete</i></a>
+                        <script>
+                            function JavaSend(id) {
+                                var link = "/Admin/deleteBlog/" + id;
+                                $("#modalLink").attr("href", link);
+                                $("#deleteBlog").modal();
+                            }
+                        </script>
+                    </th>
+                </tr>
                 }
-            </tbody>
+                </tbody>
         </table>
-    </div>
-</div>
 <div class="modal fade" id="deleteBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="top: 50px;">
@@ -54,11 +59,3 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<script>
-    function JavaSend(id) {
-        var link = "/Admin/deleteBlog/" + id;
-        $("#modalLink").attr("href", link);
-        $("#deleteBlog").modal();
-    }
-</script>
