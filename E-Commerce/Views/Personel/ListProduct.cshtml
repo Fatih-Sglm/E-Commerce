@@ -3,7 +3,6 @@
     ViewData["Title"] = "ListProduct";
     Layout = "~/Views/Shared/_PersonelLayout.cshtml";
 }
-<<<<<<< HEAD
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Bordered table</h4>
@@ -25,11 +24,18 @@
                         <td>@x.Brands.Name </td>
                         <td>@x.Category.Name</td>
                         <td>@x.Status</td>
-                        <td>
-                            <span><a class="btn btn-gradient-info btn-rounded btn-fw" href="/Blog/Blogdetail/@x.Id" title="Detayı Gör"><i class="mdi mdi-details" style="width:40px"></i></a> </span>
-                            <a class="btn btn-gradient-success btn-rounded btn-fw " href="/Admin/GetBlog/@x.Id" title="Güncelle"><i class="mdi mdi-window-restore"></i></a>
-                            <a class="btn btn-gradient-danger btn-rounded btn-fw" data-target="#deleteBlog" title="Sil" onclick="JavaSend(@x.Id)"><i class="mdi mdi-delete"></i></a>
-                        </td>
+                        <th>
+                            <span class="btn bg-cyan waves-effect"><a href="/Blog/Blogdetail/@x.Id" title="Detayı Gör"> <i class="material-icons"> folder</i></a> </span>
+                            <a class="btn bg-purple waves-effect" href="/Admin/GetBlog/@x.Id" title="Güncelle">  <i class="material-icons">update</i></a>
+                            <a class="btn bg-red waves-effect" data-target="#deleteBlog" title="Sil" onclick="JavaSend(@x.Id)"> <i class="material-icons">delete</i></a>
+                            <script>
+                                function JavaSend(id) {
+                                    var link = "/Admin/deleteBlog/" + id;
+                                    $("#modalLink").attr("href", link);
+                                    $("#deleteBlog").modal();
+                                }
+                            </script>
+                        </th>
                     </tr>
                 }
             </tbody>
@@ -54,11 +60,13 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<script>
-    function JavaSend(id) {
-        var link = "/Admin/deleteBlog/" + id;
-        $("#modalLink").attr("href", link);
-        $("#deleteBlog").modal();
-    }
-</script>
+
+@section Script{
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+    
+}

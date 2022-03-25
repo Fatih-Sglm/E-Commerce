@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace EntityLayer.Concrete
+﻿namespace EntityLayer.Concrete
 {
-    public class Adress
+    public class Adress : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
-        public string detail { get; set; }
+        public string Detail { get; set; }
         public string HouseNumber { get; set; }
-        public bool Status { get; set; }
 
-        public virtual int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
-        
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
     }
 }

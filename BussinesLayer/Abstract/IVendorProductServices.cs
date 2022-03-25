@@ -10,8 +10,6 @@ namespace BussinesLayer.Abstract
 {
      public interface IVendorProductServices : IGenericServices<VendorProduct>
     {
-        List<VendorProduct> GetProductById(int id);
-
         VendorProduct GetProductAll(int id);
     }
 }

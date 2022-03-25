@@ -1,26 +1,22 @@
 ﻿using BussinesLayer.Concrete;
-using BussinesLayer.ValidationRules;
 using DataAccesLayer.Concrete;
 using DataAccesLayer.EntityFramework;
+using Dtos.ViewModels;
 using EntityLayer.Concrete;
-using EntityLayer.ViewModels;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
 
 namespace E_Commerce.Controllers
 {
     [AllowAnonymous]
     public class SessionController : Controller
     {
-        CustomerManager cm = new CustomerManager(new EfCustomerRepository());
+        private CustomerManager cm = new CustomerManager(new EfCustomerRepository());
 
         [HttpGet]
         public IActionResult Login()
@@ -46,7 +42,6 @@ namespace E_Commerce.Controllers
                     ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
                     await HttpContext.SignInAsync(principal);
                     return RedirectToAction("Index", "Customer", new { id = dv.Id });
-
                 }
             }
             else
@@ -61,6 +56,7 @@ namespace E_Commerce.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Register(RegisterViewmodel rv)
         {
@@ -82,8 +78,6 @@ namespace E_Commerce.Controllers
                         ViewBag.Message = noResult;
                         return View("Register", rv);
                     }
-
-
                     else
                     {
                         cs.Name = rv.Name;
@@ -101,7 +95,6 @@ namespace E_Commerce.Controllers
                 {
                     return View("Register", rv);
                 }
-
             }
         }
     }

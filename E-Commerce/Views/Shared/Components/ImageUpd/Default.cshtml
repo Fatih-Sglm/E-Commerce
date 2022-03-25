@@ -3,6 +3,6 @@
 <div>
     @foreach (var item in Model)
     {
-        <a href="/Personel/DeleteImage/@item.Id" title="Resmi sil" id="dlt"><img src="~/img/@item.ImageName" alt="Product Image"></a>
+        <a href="/Personel/DeleteImage/@item.Id" title="Resmi sil" id="dlt"><img src="@Url.Content(item.Location)" alt="Product Image"></a>
     }
 </div> &emsp; &emsp; &emsp;

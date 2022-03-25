@@ -46,7 +46,7 @@ namespace BussinesLayer.Concrete
 
         public void TInsert(Images t)
         {
-            throw new NotImplementedException();
+            _img.Insert(t);
         }
 
         public void TUpdate(Images t)

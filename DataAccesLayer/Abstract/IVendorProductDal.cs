@@ -11,6 +11,7 @@ namespace DataAccesLayer.Abstract
     public interface IVendorProductDal :IGenericdal<VendorProduct>
     {
         List<VendorProduct> GetlistProduct();
+
         VendorProduct GetProductWithAll(Expression<Func<VendorProduct, bool>> filter);
         
         

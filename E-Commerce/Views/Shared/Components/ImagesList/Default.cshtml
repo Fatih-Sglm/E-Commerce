@@ -3,13 +3,13 @@
     <div class="product-slider-single normal-slider">
         @foreach (var item in Model)
         {
-            <img src="~/img/@item.ImageName" alt="Product Image">
+            <img src="@Url.Content(item.Location)" alt="Product Image">
         }
     </div>
     <div class="product-slider-single-nav normal-slider">
         @foreach (var item in Model)
         {
-            <div class="slider-nav-img"><img src="~/img/@item.ImageName" alt="Product Image"></div>
+            <div class="slider-nav-img"><img src="@Url.Content(item.Location)" alt="Product Image"></div>
         }
         </div>
 </div>

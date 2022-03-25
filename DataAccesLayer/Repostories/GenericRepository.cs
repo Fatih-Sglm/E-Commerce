@@ -36,6 +36,11 @@ namespace DataAccesLayer.Repostories
             return c.Set<T>().Find(id);
         }
 
+        public T GetWihtExpression(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(T t)
         {
             using var c = new Context();

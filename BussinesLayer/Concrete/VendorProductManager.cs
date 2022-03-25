@@ -38,6 +38,10 @@ namespace BussinesLayer.Concrete
             return _vd.GetlistProduct();
         }
 
+        public List<VendorProduct> GetLast5Product()
+        {
+            return _vd.GetlistProduct().Take(5).OrderByDescending(x => x.Id).ToList();
+        }
 
         public void TUpdate(VendorProduct p)
         {
@@ -55,19 +59,11 @@ namespace BussinesLayer.Concrete
             return _vd.GetProductWithAll(x => x.Id == id);
         }
 
-        public List<VendorProduct> GetProductById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<VendorProduct> TGetAll(Expression<Func<VendorProduct, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _vd.GetAll(filter);
         }
 
-        public List<VendorProduct> TGetAll(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

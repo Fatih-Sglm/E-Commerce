@@ -1,8 +1,10 @@
-﻿@model EntityLayer.Concrete.Product
-@{
-    ViewData["Title"] = "AddProduct";
+﻿@{
+    ViewData["Title"] = "ListProduct";
     Layout = "~/Views/Shared/_PersonelLayout.cshtml";
 }
+
+@model AddProductDto
+
 <form class="forms-sample" asp-action="AddProduct" enctype="multipart/form-data" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
@@ -10,7 +12,7 @@
         <input asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group">    
         <label for="exampleInputEmail3">Ürün Markasını Seçin</label>
         <select asp-for="BrandId" class="form-control" title="Choose one of the following...">
             @foreach (var item in ViewBag.BrandId)
@@ -23,7 +25,6 @@
     <div class="form-group">
         <label for="exampleInputEmail3">Ürün Kategorini Seçin</label>
         <select asp-for="CategoryId" class="form-control" title="Choose one of the following...">
-            <option value="0" >Seçiniz..</option>
             @foreach (var item in ViewBag.CategoryId)
             {
                 <option value="@item.Value" class="form-control">@item.Text</option>
@@ -31,21 +32,25 @@
         </select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
-<div class="form-group">
-    <label>File upload</label>
-    <input type="file" asp-for="Images" multiple class="file-upload-default">
-    <div class="input-group col-xs-12">
-        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-        <span class="input-group-append">
-            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-        </span>
+    <div class="form-group">
+        <label>File upload</label>
+        <input type="file" asp-for="Files" multiple class="file-upload-default">
+        <div class="input-group col-xs-12">
+            <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+            <span class="input-group-append">
+                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+            </span>
+        </div>
+        <span asp-validation-for="Files" class="text-danger"></span>
     </div>
-    <span asp-validation-for="Images" class="text-danger"></span>
-</div>
+    <div>
+        <input type="checkbox" name="check" value="1" />
+        <label for="chkSecim">Resimleri Ölçekle</label>
+    </div>
     <div class="form-group">
         <label for="exampleTextarea1">Product Description</label>
-        <textarea asp-for="description" class="form-control" id="exampleTextarea1"></textarea>
-        <span asp-validation-for="description" class="text-danger"></span>
+        <textarea asp-for="Description" class="form-control" id="exampleTextarea1"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-gradient-primary mr-2">Save</button>
     <button class="btn btn-light">Cancel</button>
@@ -57,12 +62,3 @@
         CKEDITOR.replace("exampleTextarea1")
     </script>
 }
-
-
-
-
-
-
-
-
-

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EntityLayer.Concrete
 {
-    public class Role
+    public class Role : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
         public string role { get; set; }
 
-        public virtual ICollection<PersonelRole> PersonelRoles { get; set; }
+        public ICollection<PersonelRole> PersonelRoles { get; set; }
     }
 }

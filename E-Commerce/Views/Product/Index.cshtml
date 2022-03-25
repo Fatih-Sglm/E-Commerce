@@ -1,9 +1,4 @@
-﻿@using EntityLayer.Concrete
-@model List<VendorProduct>
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model List<VendorProduct>
 <div class="breadcrumb-wrap">
     <div class="container-fluid">
         <ul class="breadcrumb">
@@ -83,7 +78,7 @@
                                 <div class="product-image">
                                     <a href="/Product/ProductDetail/@x.Id">
                                         
-                                       <img src="@Url.Content(Model.First().Product.imageS.First().Locaiton)" style="width:200px; height:200px" alt="Product Image">
+                                       <img src="@Url.Content(Model.First().Product.imageS.First().Location)" style="width:200px; height:200px" alt="Product Image">
                                     </a>
                                     <div class="product-action">
                                         <a href="#"><i class="fa fa-cart-plus"></i></a>

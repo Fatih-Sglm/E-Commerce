@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EntityLayer.Concrete
 {
-    public class VendorProduct
+    public class VendorProduct : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-        public virtual int ProductId { get; set; }
-        public virtual int VendorId { get; set; }
-        public bool IsAppoIsApproved { get; set; }
+        public int ProductId { get; set; }
+        public int VendorId { get; set; }
+
         public string PriceString
         {
             get { return Price.ToString("N"); }
         }
+
         public decimal Price { get; set; }
+
         public string ShippingString
         {
             get { return Shipping.ToString("N"); }
         }
-        
+
         public decimal Shipping { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Vendor Vendor { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public Product Product { get; set; }
+        public Vendor Vendor { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

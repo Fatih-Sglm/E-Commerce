@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace EntityLayer.Concrete
+﻿namespace EntityLayer.Concrete
 {
-    public class Comment
+    public class Comment : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
         public string Content { get; set; }
         public float Rate { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool Status { get; set; }
-
-        public virtual int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual int ProductId { get; set; }
-        public virtual VendorProduct VendorProduct { get; set; }
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
+        public int ProductId { get; set; }
+        public VendorProduct VendorProduct { get; set; }
     }
 }
