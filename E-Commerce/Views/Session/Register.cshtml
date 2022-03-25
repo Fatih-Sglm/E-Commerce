@@ -1,56 +1,56 @@
-﻿@model EntityLayer.ViewModels.RegisterViewmodel
-@{
-    ViewData["Title"] = "Register";
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@model RegisterViewmodel
 <div class="login">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
                 <div class="register-form">
                     <form asp-action="Register" method="post">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Adınız</label>
-                            <input class="form-control" type="text" asp-for="Name">
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Soyadınız</label>
-                            <input class="form-control" type="text" asp-for="SurName">
-                            <span asp-validation-for="SurName" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Mail Adresiniz</label>
-                            <input class="form-control" asp-for="Mail">
-                            <span asp-validation-for="Mail" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Telefon Numaranız</label>
-                            <input class="form-control" type="tel" asp-for="PhoneNumber" id="tlfn">
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Şifreniz</label>
-                            <input class="form-control" id="password" type="password" asp-for="Password">
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Adınız</label>
+                                <input class="form-control" type="text" asp-for="Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Soyadınız</label>
+                                <input class="form-control" type="text" asp-for="SurName">
+                                <span asp-validation-for="SurName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Mail Adresiniz</label>
+                                <input class="form-control" asp-for="Mail">
+                                <span asp-validation-for="Mail" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Telefon Numaranız</label>
+                                <input class="form-control" type="tel" asp-for="PhoneNumber" id="tlfn">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Şifreniz</label>
+                                <input class="form-control" id="password" type="password" asp-for="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
 
+                            </div>
+                            <div class="col-md-6">
+                                <label>Şifre Tekrar</label>
+                                <input class="form-control" id="confirm_password" type="password" asp-for="ConfirmPassword"><span id='message'></span>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn">Kayıt Ol</button>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="txt1" style="color:red">
+                                @ViewBag.Message
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label>Şifre Tekrar</label>
-                            <input class="form-control" id="confirm_password" type="password" asp-for="ConfirmPassword"><span id='message'></span>
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="btn">Kayıt Ol</button>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="txt1" style="color:red">
-                            @ViewBag.Message
-                        </div>
-                    </div>
-                        </form>
+                    </form>
                 </div>
             </div>
         </div>

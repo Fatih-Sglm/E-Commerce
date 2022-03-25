@@ -70,9 +70,8 @@ namespace E_Commerce
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Personel}/{action=AddProduct}/{id?}");
+                endpoints.MapDefaultControllerRoute();
+                
             });
         }
     }

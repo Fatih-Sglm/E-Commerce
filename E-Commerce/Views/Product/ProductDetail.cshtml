@@ -1,8 +1,4 @@
-﻿@model EntityLayer.Concrete.VendorProduct
-@{
-    ViewData["Title"] = "ProductDetail";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model VendorProduct
 
 
 <div class="breadcrumb-wrap">
@@ -20,7 +16,7 @@
             <div class="col-lg-8">
                 <div class="product-detail-top">
                     <div class="row align-items-center">
-                        @await Component.InvokeAsync("ImagesList", new { id = Model.Id })
+                        @await Component.InvokeAsync("ImagesList", new { id = Model.Product.Id })
                         <div class="col-md-7">
                             <div class="product-content">
                                 <div class="title"><h2>@Model.Product.Title</h2></div>

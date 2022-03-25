@@ -1,9 +1,8 @@
-﻿@addTagHelper * , Microsoft.AspNetCore.Mvc.TagHelpers
-@model EntityLayer.Concrete.Customer
-@{
-    ViewData["Title"] = "Login";
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@model Customer
 
 <div class="login">
     <div class="container-fluid">
@@ -14,7 +13,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>E-mail</label>
-                                <input type="text" asp-for="Mail"  class="form-control" />
+                                <input type="text" asp-for="Mail" class="form-control" />
                                 <span asp-validation-for="Mail" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">

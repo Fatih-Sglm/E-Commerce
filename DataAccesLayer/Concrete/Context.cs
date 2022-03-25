@@ -13,7 +13,7 @@ namespace DataAccesLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder op)
         {
-            op.UseSqlServer("server=DESKTOP-OIGQG9O;database=StoreDB; integrated security = true; ");
+            op.UseSqlServer("server=FATIHSPC\\SQLEXPRESS;database=StoreDB; integrated security = true; ");
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
